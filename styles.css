@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #f9f9f9;
+}
+main {
+  display: flex;
+  box-shadow: 1px 1px 5px #ccc;
+}
+main aside {
+  padding: 10px 15px;
+  background-color: #ccc;
+  width: 230px;
+}
+main aside nav {
+  padding: 8px 15px;
+}
+main aside nav a {
+  border: 1px solid #000;
+  background-color: white;
+  margin-bottom: 15px;
+  display: block;
+}
+main aside nav a img {
+  max-width: 100%;
+}
+main > section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+main > section nav#menuTop {
+  padding: 10px;
+  min-height: 40px;
+}
+main > section nav#menuTop .menu {
+  display: none;
+}
+main > section nav#menuTop .menu.show {
+  display: block;
+}
+main > section section#wrapper {
+  background-color: white;
+  height: 800px;
+  overflow: hidden;
+}

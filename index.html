@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elements Resize</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <h1>{test main lib}</h1>
-  <script type="importmap">
-    {
-      "imports": {
-        "my-library": "./node_modules/my-library/dist/esm/my-library.js"
-      }
-    }
-  </script>
-  <script type="module" src="main.js"></script>
+    <main>
+        <aside>
+            <nav>
+                <a href="#" class="addElement">
+                    <div>
+                        This is a paragraph
+                    </div>
+                </a>
+                <a href="#" class="addElement">
+                    <img src="https://img.freepik.com/fotos-gratis/farol-alto-no-mar-do-norte-sob-um-ceu-nublado_181624-49637.jpg" alt="">
+                </a>
+            </nav>
+        </aside>
+        <section>
+            <nav id="menuTop">
+                <div class="menu text">
+                    <select id="fontFamily">
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Arial">Arial</option>
+                        <option value="sans-serif">Sans Serif</option>
+                    </select>
+                    <button id="boldText">Negrito</button>
+                    <input type="color" id="colorText" value="#000000">
+                </div>
+            </nav>
+            <section id="wrapper"></section>
+        </section>
+    </main>
+    <script type="module" src="/main.js"></script>
 </body>
 </html>

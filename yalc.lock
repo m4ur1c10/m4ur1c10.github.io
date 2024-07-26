@@ -1,8 +1,8 @@
 {
   "version": "v1",
   "packages": {
-    "my-library": {
-      "signature": "9e5b26812844e1404e58af0cc58558d9",
+    "html-resize": {
+      "signature": "835c380482882215629d19409e31ae25",
       "file": true
     }
   }

@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "my-library": "file:.yalc/my-library"
+    "html-resize": "file:.yalc/html-resize"
   },
   "devDependencies": {
     "vite": "^5.3.4"
