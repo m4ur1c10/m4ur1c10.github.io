@@ -23,8 +23,7 @@
   },
   "files": [
     "dist",
-    "package-lock.json",
     "package.json"
   ],
-  "yalcSig": "6ed3e5b01def95afb8b1ae66bf502d14"
+  "yalcSig": "a12421bb2c5b03c523f2b3f585fce0c0"
 }
