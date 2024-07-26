@@ -1,10 +1,4 @@
-import { MyClass } from 'my-library';
 import { Wrapper } from 'html-resize';
-
-const cl = new MyClass();
-const result = cl.someFunction(5);
-
-console.log({ result });
 
 const app = {
     wrapper: new Wrapper({
