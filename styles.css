@@ -24,6 +24,7 @@ main aside nav a {
 }
 main aside nav a img {
   max-width: 100%;
+  display: block;
 }
 main > section {
   display: flex;

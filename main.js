@@ -45,6 +45,7 @@ app.onNoneElementSelect(() => {
 });
 
 function showTextMenu() {
+    document.getElementById('fontSize').value = '';
     document.getElementById('menuTop').querySelector('.menu.text').classList.add('show');
 }
 
@@ -75,3 +76,9 @@ document.getElementById('colorText').addEventListener('change', (e) => {
     elementSelected.setColorInSelection(e.target.value);
 }, false);
 
+document.getElementById('fontSize').addEventListener('change', (e) => {
+    if (!elementSelected) {
+        return;
+    }
+    elementSelected.setFontSize(e.target.value);
+}, false);

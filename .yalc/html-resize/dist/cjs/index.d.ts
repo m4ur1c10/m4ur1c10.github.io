@@ -33,6 +33,20 @@ declare abstract class Resizable {
     removeSelection(): void;
     getElement(): HTMLDivElement | HTMLImageElement;
 }
+declare class TopToolBoxElement {
+    private readonly contentElement;
+    private readonly topToolBoxElement;
+    private readonly linkButton;
+    private readonly removeLinkButton;
+    private readonly removeButton;
+    onLinkSubmit: (_link: string) => void;
+    onLinkRemove: () => void;
+    onClickRemoveButton: () => void;
+    constructor(contentElement: HTMLElement);
+    setEnableAddLink(enable?: boolean): void;
+    show(): void;
+    hide(): void;
+}
 type WrapperContentElement = (HTMLDivElement | HTMLImageElement);
 declare abstract class ElementManipulable {
     protected readonly contentEl: WrapperContentElement;
@@ -45,11 +59,15 @@ declare abstract class ElementManipulable {
     onStopResize: () => void;
     onElementSelect: (_id: string) => void;
     protected resizableElement: Resizable | null;
+    protected topToolBoxElement: TopToolBoxElement;
     constructor(contentEl: WrapperContentElement, wrapperElement: HTMLElement, isResizable: boolean, isDragabble: boolean, type: ResizableType);
     protected abstract setCenterPosition(): void;
     private configureElements;
     private initEvents;
     private handleSelectedElement;
+    protected removeLinkWrapperElement(): void;
+    protected createLinkWrapperElement(link: string): void;
+    protected abstract hasAnySelectionInText(): boolean;
     removeSelection(): void;
     getElement(): WrapperContentElement;
     getId(): string;

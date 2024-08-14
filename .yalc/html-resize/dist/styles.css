@@ -1,0 +1,188 @@
+.resizable {
+  font-size: 18px;
+}
+.resizable .shadow {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.resizable.selected .shadow {
+  border: 3px solid purple;
+}
+.resizable.selected .shadow .res-point {
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  display: block;
+  box-shadow: 0px 0px 3px #ccc;
+}
+.resizable.selected .shadow .res-point.tl {
+  top: -9px;
+  left: -9px;
+}
+.resizable.selected .shadow .res-point.tl:hover {
+  cursor: se-resize;
+  background-color: purple;
+}
+.resizable.selected .shadow .res-point.tr {
+  top: -9px;
+  right: -9px;
+}
+.resizable.selected .shadow .res-point.tr:hover {
+  cursor: sw-resize;
+  background-color: purple;
+}
+.resizable.selected .shadow .res-point.bl {
+  bottom: -9px;
+  left: -9px;
+}
+.resizable.selected .shadow .res-point.bl:hover {
+  cursor: sw-resize;
+  background-color: purple;
+}
+.resizable.selected .shadow .res-point.br {
+  bottom: -9px;
+  right: -9px;
+}
+.resizable.selected .shadow .res-point.br:hover {
+  cursor: se-resize;
+  background-color: purple;
+}
+.resizable.selected .shadow .res-point.mr,
+.resizable.selected .shadow .res-point.ml {
+  height: 20px;
+  width: 5px;
+  border-radius: 4px;
+  top: calc(50% - 10px);
+}
+.resizable.selected .shadow .res-point.mr:hover,
+.resizable.selected .shadow .res-point.ml:hover {
+  cursor: e-resize;
+  background-color: purple;
+}
+.resizable.selected .shadow .res-point.mr {
+  right: -4px;
+}
+.resizable.selected .shadow .res-point.ml {
+  left: -4px;
+}
+.resizable.selected .shadow .res-point.mt,
+.resizable.selected .shadow .res-point.mb {
+  height: 5px;
+  width: 20px;
+  border-radius: 4px;
+  left: calc(50% - 10px);
+}
+.resizable.selected .shadow .res-point.mt:hover,
+.resizable.selected .shadow .res-point.mb:hover {
+  cursor: n-resize;
+  background-color: purple;
+}
+.resizable.selected .shadow .res-point.mt {
+  top: -4px;
+}
+.resizable.selected .shadow .res-point.mb {
+  bottom: -4px;
+}
+.content-wrapper.is-dragging {
+  cursor: grabbing;
+}
+.content-wrapper.selected .rotate-point {
+  display: flex;
+}
+.content-wrapper .rotate-point {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  bottom: -35px;
+  border-radius: 50%;
+  left: calc(50% - 12px);
+  box-shadow: 0px 0px 3px #999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.content-wrapper .rotate-point:hover {
+  cursor: grab;
+}
+.top-toolbox {
+  position: absolute;
+  top: -50px;
+  width: 100%;
+  display: none;
+  justify-content: center;
+}
+.top-toolbox.active {
+  display: flex;
+}
+.top-toolbox .top-tool-box-wrapper {
+  padding: 4px;
+  box-shadow: 0 0 5px #ccc;
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  display: flex;
+}
+.top-toolbox .top-tool-box-wrapper .top-tool-box-link-wrapper {
+  display: flex;
+}
+.top-toolbox .top-tool-box-wrapper button {
+  border: 0;
+  background-color: transparent;
+}
+.top-toolbox .top-tool-box-wrapper .link-box {
+  position: absolute;
+  top: 40px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px #ccc;
+  padding: 6px;
+  z-index: 2;
+  background: #f9f9f9;
+  display: none;
+}
+.top-toolbox .top-tool-box-wrapper .link-box.active {
+  display: block;
+}
+.top-toolbox .top-tool-box-wrapper .link-box form {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px 0;
+}
+.top-toolbox .top-tool-box-wrapper .link-box form input {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px;
+}
+.top-toolbox .top-tool-box-wrapper .link-box form button {
+  background-color: #999;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: white;
+}
+.content-wrapper {
+  position: absolute;
+}
+.content-wrapper .content {
+  border: 3px solid transparent;
+}
+.content-wrapper .content[contenteditable=false]::selection,
+.content-wrapper .content[contenteditable=false] span::selection {
+  background-color: transparent;
+}
+.content-wrapper:hover .content {
+  border: 3px solid red;
+}
+.content-wrapper.text .content {
+  padding: 2px 4px;
+}
+.content-wrapper.image .content {
+  object-fit: cover;
+  display: block;
+}
