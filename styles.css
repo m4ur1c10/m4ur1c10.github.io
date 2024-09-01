@@ -13,17 +13,40 @@ main aside {
   background-color: #ccc;
   width: 230px;
 }
-main aside nav {
+main aside #menuLateral nav#menuElements {
   padding: 8px 15px;
 }
-main aside nav a {
+main aside #menuLateral nav#menuElements a {
   border: 1px solid #000;
   background-color: white;
   margin-bottom: 15px;
   display: block;
+  text-decoration: none;
 }
-main aside nav a img {
+main aside #menuLateral nav#menuElements a img {
   max-width: 100%;
+  display: block;
+}
+main aside #menuLateral #menuLayers #listLayers {
+  padding: 0;
+}
+main aside #menuLateral #menuLayers #listLayers li {
+  display: block;
+  list-style-type: none;
+  border: 1px solid #999;
+  padding: 5px 15px;
+  background-color: white;
+  height: 60px;
+}
+main aside #menuLateral #menuLayers #listLayers li * {
+  display: block;
+  max-height: 100%;
+  margin: 0 auto;
+}
+main aside #menuLateral nav {
+  display: none;
+}
+main aside #menuLateral nav.show {
   display: block;
 }
 main > section {

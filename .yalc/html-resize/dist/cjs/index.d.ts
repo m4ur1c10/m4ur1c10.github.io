@@ -10,9 +10,11 @@ declare enum ResizePointTypeEnum {
 }
 declare enum ResizableType {
     RESIZABLE_TYPE_TEXT = "text",
-    RESIZABLE_TYPE_IMAGE = "image"
+    RESIZABLE_TYPE_IMAGE = "image",
+    RESIZABLE_TYPE_VIDEO = "video",
+    RESIZABLE_TYPE_SVG = "svg"
 }
-type ResizableContentElement = (HTMLDivElement | HTMLImageElement);
+type ResizableContentElement = (HTMLDivElement | HTMLImageElement | HTMLVideoElement | SVGElement);
 interface ResizableConfig {
     contentEl: ResizableContentElement;
     type: ResizableType;
@@ -20,7 +22,7 @@ interface ResizableConfig {
     wrapperLeft: number;
 }
 declare abstract class Resizable {
-    protected readonly resizableElement: HTMLDivElement | HTMLImageElement;
+    protected readonly resizableElement: HTMLDivElement | HTMLImageElement | HTMLVideoElement | SVGElement;
     protected wrapperLeft: number;
     private shadowElement;
     private readonly type;
@@ -31,11 +33,11 @@ declare abstract class Resizable {
     private handleClick;
     abstract doResize(clientX: number, clientY: number, resizeDirection: ResizePointTypeEnum): void;
     removeSelection(): void;
-    getElement(): HTMLDivElement | HTMLImageElement;
+    getElement(): HTMLDivElement | HTMLImageElement | HTMLVideoElement | SVGElement;
 }
 declare class TopToolBoxElement {
-    private readonly contentElement;
-    private readonly topToolBoxElement;
+    protected readonly contentElement: HTMLElement;
+    protected readonly topToolBoxElement: HTMLDivElement;
     private readonly linkButton;
     private readonly removeLinkButton;
     private readonly removeButton;
@@ -47,10 +49,13 @@ declare class TopToolBoxElement {
     show(): void;
     hide(): void;
 }
-type WrapperContentElement = (HTMLDivElement | HTMLImageElement);
+type WrapperContentElement = (HTMLDivElement | HTMLImageElement | HTMLVideoElement | HTMLOrSVGImageElement);
 declare abstract class ElementManipulable {
     protected readonly contentEl: WrapperContentElement;
     protected readonly wrapperElement: HTMLElement;
+    private readonly isResizable;
+    private readonly isDragabble;
+    protected countElement: number;
     private readonly type;
     private wrapperBounds;
     protected contentWrapper: HTMLDivElement;
@@ -58,20 +63,35 @@ declare abstract class ElementManipulable {
     onStartResize: () => void;
     onStopResize: () => void;
     onElementSelect: (_id: string) => void;
+    onRightClick: (_e: MouseEvent) => void;
+    onDeleted: () => void;
     protected resizableElement: Resizable | null;
     protected topToolBoxElement: TopToolBoxElement;
-    constructor(contentEl: WrapperContentElement, wrapperElement: HTMLElement, isResizable: boolean, isDragabble: boolean, type: ResizableType);
+    constructor(contentEl: WrapperContentElement, wrapperElement: HTMLElement, isResizable: boolean, isDragabble: boolean, countElement: number, type: ResizableType);
     protected abstract setCenterPosition(): void;
     private configureElements;
     private initEvents;
     private handleSelectedElement;
+    private handleContextMenu;
     protected removeLinkWrapperElement(): void;
     protected createLinkWrapperElement(link: string): void;
     protected abstract hasAnySelectionInText(): boolean;
+    deleteElement(): void;
     removeSelection(): void;
     getElement(): WrapperContentElement;
+    abstract getElementClear(): WrapperContentElement;
     getId(): string;
     getType(): ResizableType;
+    /**
+     * Used for z-index layer position
+     */
+    getCountPosition(): number;
+    /**
+     * Used for z-index layer position
+     */
+    setCountPosition(count: number): void;
+    isElementDragabble(): boolean;
+    isElementResizable(): boolean;
 }
 interface WrapperConfig {
     el: HTMLElement;
@@ -81,10 +101,24 @@ interface WrapperContentElementConfig {
     isResizable?: boolean;
     isDragabble?: boolean;
 }
+type ElementPosition = {
+    position: number;
+    id: string;
+};
+type ElementPositionWithElement = ElementPosition & {
+    element: ElementManipulable;
+};
+declare enum WrapperTypeEventEnum {
+    ELEMENTS_ORDER_CHANGE = "elements:order:change",
+    ELEMENT_ON_DELETED = "element:on:deleted"
+}
 declare class Wrapper {
     private readonly wrapperElement;
     private isResizing;
     private elements;
+    private countElement;
+    private contextMenu;
+    private onEvents;
     onElementSelect: (_element: ElementManipulable) => void;
     onNoneElementSelect: () => void;
     constructor({ el }: WrapperConfig);
@@ -93,5 +127,13 @@ declare class Wrapper {
     private addElementManipulate;
     private initEvents;
     private handleClick;
+    private sendElementTopOrBottom;
+    private getNextPosition;
+    private disableContextMenuItemsByElement;
+    private getElementsPositionsOrdered;
+    getElementsLayer(): ElementPositionWithElement[];
+    setPositionElement(elementId: string, newPosition: number): void;
+    on(typeEvent: WrapperTypeEventEnum, callback: (...args: any[]) => void): void;
+    private send;
 }
 export { Wrapper };
