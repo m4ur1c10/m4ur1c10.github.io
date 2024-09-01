@@ -1,4 +1,5 @@
 import { Wrapper } from 'html-resize';
+import Sortable from 'sortablejs';
 
 const getContentEl = (target) => {
     if (target.dataset.videoUrl) {

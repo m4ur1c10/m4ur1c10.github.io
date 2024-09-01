@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "html-resize": "file:.yalc/html-resize"
+    "html-resize": "file:.yalc/html-resize",
+    "sortablejs": "^1.15.2"
   },
   "devDependencies": {
     "vite": "^5.3.4"
